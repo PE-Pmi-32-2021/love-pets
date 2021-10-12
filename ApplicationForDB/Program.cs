@@ -1,4 +1,6 @@
 ﻿using System;
+using Npgsql;
+
 
 namespace ApplicationForDB
 {
@@ -6,7 +8,12 @@ namespace ApplicationForDB
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var cs = "Host=localhost;Username=postgres;Password=1234;Database=love_pets";
+            var con = new NpgsqlConnection(cs);
+            con.Open();
+
+            Console.Read();
         }
+
     }
 }
