@@ -40,54 +40,6 @@ INSERT INTO Reminder (RemindingDate, Reminding, ReminderType, ProfileID)
  ('2021-11-08 21:05:06', 'vet', 'vet', 2)
  );
 
-DROP TABLE IF EXISTS Categories CASCADE;
-CREATE TABLE IF NOT EXISTS Categories (
-  ID SERIAL Primary key,
-  Category varchar NOT NULL,
-  Breed varchar NOT NULL,
-  PhotoLink varchar NOT NULL
-);
-
-INSERT INTO Categories (Category, Breed, PhotoLink)
-(VALUES
- ('Dog', 'Border-collie', 'jhvbjkvkj'),
- ('Cat', 'sfinks', 'jkbvjkbvk'),
- ('Bird', 'owl', 'fxcfghjk')
-);
-
-DROP TABLE IF EXISTS Information CASCADE;
-CREATE TABLE IF NOT EXISTS Information (
-  ID SERIAL Primary key,
-  InGeneral varchar NOT NULL,
-  Nutrition varchar NOT NULL,
-  Care varchar NOT NULL,
-  Health varchar NOT NULL,
-  PhotoLink1 varchar,
-  PhotoLink2 varchar,
-  PhotoLink3 varchar,
-  CategoriesID int REFERENCES Categories(ID) ON DELETE CASCADE
-);
-
-
-INSERT INTO Information (InGeneral, Nutrition, Care, Health, PhotoLink1, PhotoLink2, PhotoLink3, CategoriesID)
-(VALUES
- ('Dog1', 'food1', 'love', 'Health1', 'irhwrioh', 'bebaetbaetn', 'erbebetb', 1),
- ('Dog2', 'food2', 'hug', 'Health2','etaetbebb', 'tbetbeber', 'sbttnb', 2),
- ('Cat1', 'milk', 'pet', 'Health3', 'erbr', 'erbree', 'aetberber', 3),
- ('Cat2', 'milk2', 'do not disturb', 'Health4', 'arerg', 'earbb', 'aergaerb', 1),
- ('Bird1', 'mice', 'clean', 'Health5', 'erbeb', 'eberberb', 'aerberber', 2),
- ('Bird2', 'mice2', 'listen', 'Health6', 'aererb', 'aergwrg', 'ergab', 3)
-);
-
-
-DROP TABLE IF EXISTS Questions CASCADE;
-CREATE TABLE IF NOT EXISTS Questions (
-  ID SERIAL Primary key,
-  Question varchar NOT NULL,
-  QuestionType bool NOT NULL,
-  PhotoLink varchar NOT NULL
-);	
-
 
 INSERT INTO Questions (Question, QuestionType, PhotoLink)
 (VALUES
