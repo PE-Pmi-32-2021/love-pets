@@ -1,0 +1,24 @@
+﻿<Window x:Class="LovePets_UI.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LovePets_UI"
+        mc:Ignorable="d"
+        Title="Window2" Height="450" Width="800">
+    <Grid>
+        <Canvas HorizontalAlignment="Left" Height="166" Margin="240,77,0,0" VerticalAlignment="Top" Width="213"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="46" Margin="34,27,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="1.313,2.926"/>
+        <Calendar HorizontalAlignment="Left" VerticalAlignment="Top" Margin="240,77,0,0" FontSize="22">
+            <Calendar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFE4EAF0" Offset="0"/>
+                    <GradientStop Color="#FFECF0F4" Offset="0.16"/>
+                    <GradientStop Color="#FFFCFCFD" Offset="0.16"/>
+                    <GradientStop Color="#FF635252" Offset="1"/>
+                </LinearGradientBrush>
+            </Calendar.Background>
+        </Calendar>
+
+    </Grid>
+</Window>
