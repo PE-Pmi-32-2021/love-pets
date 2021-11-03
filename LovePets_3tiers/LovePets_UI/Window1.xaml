@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LovePets_UI"
         mc:Ignorable="d"
         Title="Window1"  Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
-      Width="{x:Static SystemParameters.PrimaryScreenWidth}"  WindowStartupLocation="CenterScreen">
+      Width="{x:Static SystemParameters.PrimaryScreenWidth}"  WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Button x:Name="bbbb" Content="Button" HorizontalAlignment="Left" Height="46" Margin="34,27,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="1.313,2.926" Click="Button_Click"/>
 
@@ -15,12 +15,23 @@
                 <ImageBrush x:Name="Foteo" Stretch="Fill"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Button x:Name="puasenzia" Content="+" HorizontalAlignment="Left" Height="56" Margin="1320,288,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Click="Button_Click_1"/>
-        <Button Content="+" HorizontalAlignment="Left" Height="56" Margin="1320,370,0,0" VerticalAlignment="Top" Width="155" FontSize="24"/>
-        <Button Content="*" HorizontalAlignment="Left" Height="56" Margin="1320,452,0,0" VerticalAlignment="Top" Width="155" FontSize="24"/>
-        <Button Content="-" HorizontalAlignment="Left" Height="56" Margin="1320,542,0,0" VerticalAlignment="Top" Width="155" FontSize="24"/>
-        <Button Content="-" HorizontalAlignment="Left" Height="56" Margin="1320,622,0,0" VerticalAlignment="Top" Width="155" FontSize="24"/>
-        <TextBox HorizontalAlignment="Left" Height="51" Margin="785,311,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="344"/>
+        <Button x:Name="profile1" Content="+" HorizontalAlignment="Left" Height="56" Margin="1320,288,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Click="Button_Click_1"  Visibility="Hidden"/>
+        <Button x:Name="profile2" Content="+" HorizontalAlignment="Left" Height="56" Margin="1320,370,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden"/>
+        <Button x:Name="profile3" Content="*" HorizontalAlignment="Left" Height="56" Margin="1320,452,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden"/>
+        <Button x:Name="profile4" Content="-" HorizontalAlignment="Left" Height="56" Margin="1320,542,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden"/>
+        <Button x:Name="profile5" Content="-" HorizontalAlignment="Left" Height="56" Margin="1320,622,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" />
+        <TextBox x:Name="profile_name" HorizontalAlignment="Left" Height="18" Margin="788,226,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179" TextChanged="profile_name_TextChanged"/>
+        <Label Content="Кличка" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="699,218,0,0"/>
+        <TextBox x:Name="breed" HorizontalAlignment="Left" Height="18" Margin="788,274,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
+        <TextBox x:Name="color" HorizontalAlignment="Left" Height="18" Margin="788,326,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
+        <Label x:Name="age" Content="Кличка" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="788,472,0,0"/>
+        <ComboBox x:Name="sex" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="788,370,0,0">
+            <TextBlock>Girl</TextBlock>
+            <TextBlock>Boy</TextBlock>
+        </ComboBox>
+        <DatePicker x:Name="date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="788,417,0,0" SelectedDateChanged="date_SelectedDateChanged"/>
+        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="492" Margin="117,722,0,0"/>
+        <TextBox x:Name="full_name" HorizontalAlignment="Left" Height="18" Margin="182,646,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
 
 
     </Grid>

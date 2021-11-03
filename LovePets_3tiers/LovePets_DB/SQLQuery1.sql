@@ -31,18 +31,17 @@ CREATE TABLE Profile (
   Photolink [NVARCHAR](500) NOT NULL
 );
 
-
+DBCC CHECKIDENT (Profile, RESEED, 0);
 
 INSERT INTO Profile ([ProfileFullname], [ProfileName], [Breed], [Coloring], [Gender], [BirthDate], [Age], [Photolink])
 VALUES
- (N'Lolitta', N'Lolly', N'Border-collie', N'Black and white', 1,' 1/8/1999', 2, N'rvrvwrbvwrbvwwr'),
-  (N'Lolitta', N'Lolly', N'Border-collie', N'Black and white', 1,' 1/8/1999', 2, N'rvrvwrbvwrbvwwr'),
-   (N'Lolitta', N'Lolly', N'Border-collie', N'Black and white', 1,' 1/8/1999', 2, N'rvrvwrbvwrbvwwr'),
-    (N'Lolitta', N'Lolly', N'Border-collie', N'Black and white', 1,' 1/8/1999', 2, N'rvrvwrbvwrbvwwr'),
-    (N'Lolitta', N'Lolly', N'Border-collie', N'Black and white', 1,' 1/8/1999', 2, N'rvrvwrbvwrbvwwr'),
-    (N'Lolitta', N'Lolly', N'Border-collie', N'Black and white', 1,' 1/8/1999', 2, N'rvrvwrbvwrbvwwr');
+ (N'Lolitta', N'Lolly', N'Border-collie', N'Black and white', 1,' 1/8/1999', 2, N'rvrvwrbvwrbvwwr');
 
 select * from profile
+
+update Profile set [Photolink]=N'C:/love-pets/love-pets/LovePets_3tiers/LovePets_UI/Photos/Other_snake.jpg';
+
+delete from Profile;
 
 
 CREATE TABLE Reminder (
