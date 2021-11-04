@@ -30,7 +30,7 @@
             <TextBlock>Boy</TextBlock>
         </ComboBox>
         <DatePicker x:Name="date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="788,417,0,0" SelectedDateChanged="date_SelectedDateChanged"/>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="492" Margin="117,722,0,0"/>
+        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="492" Margin="117,722,0,0" Click="Button_Click_2"/>
         <TextBox x:Name="full_name" HorizontalAlignment="Left" Height="18" Margin="182,646,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179"/>
 
 

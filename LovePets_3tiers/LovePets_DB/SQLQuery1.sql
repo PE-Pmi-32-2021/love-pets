@@ -45,11 +45,19 @@ delete from Profile;
 
 
 CREATE TABLE Reminder (
+
   ID int IDENTITY(1,1) Primary key,
-  RemindingDate datetime  NOT NULL,
-  Reminding [NVARCHAR](500) NOT NULL,
-  ReminderType [NVARCHAR](500),
-  ProfileID int REFERENCES Profile(ID) ON DELETE CASCADE
+  EndTime datetime  NOT NULL,
+  StartTime datetime  NOT NULL,
+  Subject [NVARCHAR](500) NOT NULL,
+  Location [NVARCHAR](500),
+  Notes [NVARCHAR](500),
+  BackR int ,
+  BackG int ,
+  BackB int ,
+  FrontR int ,
+  FrontG int ,
+  FrontB int ,
 );
 
 

@@ -125,5 +125,12 @@ namespace LovePets_UI
             bll.UpdateProfileName(1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
 
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Window4 calendarwindow = new Window4();
+            this.Visibility = Visibility.Hidden;
+            calendarwindow.Show();
+        }
     }
 }
