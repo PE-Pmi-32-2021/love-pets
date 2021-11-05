@@ -52,25 +52,17 @@ CREATE TABLE Reminder (
   Subject [NVARCHAR](500) NOT NULL,
   Location [NVARCHAR](500),
   Notes [NVARCHAR](500),
+  IsRecursive bit, 
+  RecurrenceRule [NVARCHAR](500),
   BackR int ,
   BackG int ,
   BackB int ,
   FrontR int ,
   FrontG int ,
-  FrontB int ,
+  FrontB int 
 );
 
 
-INSERT INTO Reminder ([RemindingDate], [Reminding], [ReminderType], [ProfileID])
-VALUES
- ('2020-12-30 13:08:54', N'vet', N'feeding', 1),
- ('2020-12-30 13:08:54', N'eat', N'treatment', 2),
- ('2020-12-30 13:08:54', N'walk', N'other', 3),
- ('2020-12-30 13:08:54', N'clean', N'treatment', 1),
- ('2020-12-30 13:08:54', N'groomer', N'birthday', 3),
- ('2020-12-30 13:08:54', N'vet', N'vet', 2)
- 
- ;
  
 Select * from reminder
 

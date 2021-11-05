@@ -1,15 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using LovePets_DAL;
 using LovePets_EF;
 
+
 namespace LovePets_BLL
 {
     public class LovePetsBLL
     {
+
+        public struct Reminder_struct_bll
+        {
+            public int id;
+            public DateTime endTime;
+            public DateTime startTime;
+            public string subject;
+            public string location;
+            public string notes;
+            public bool isRecursive;
+            public string recurrenceRule;
+            public int backR;
+            public int backG;
+            public int backB;
+            public int frontR;
+            public int frontG;
+            public int frontB;
+        }
+
+
+        static T CopyStruct<T>(ref object s1)
+        {
+            GCHandle handle = GCHandle.Alloc(s1, GCHandleType.Pinned);
+            T typedStruct = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
+            handle.Free();
+            return typedStruct;
+        }
+
+        public void AddNewReminder(Reminder_struct_bll rem)
+        {
+
+            ReminderDO reminder = new ReminderDO();
+            object temp = rem;
+            reminder.AddNewReminder(CopyStruct<ReminderDO.Reminder_struct>(ref temp));
+
+        }
+
+        public List<Reminder_struct_bll> GetReminders()
+        {
+            List<Reminder_struct_bll> reminders = new List<Reminder_struct_bll>();
+
+            ReminderDO reminder = new ReminderDO();
+            for (int i = 0; i < reminder.GetRemCount(); i++)
+            {
+                object temp = reminder.GetReminder(i);
+                reminders.Add(CopyStruct<Reminder_struct_bll>(ref temp));
+
+            }
+
+            return reminders;
+        }
+
+
+
+
         public void UpdatePhoto(int id, string photo_link)
         {
             ProfileDO profile = new ProfileDO();

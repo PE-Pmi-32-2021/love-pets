@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LovePets_BLL;
 
 namespace LovePets_UI
 {
@@ -22,22 +23,48 @@ namespace LovePets_UI
     /// </summary>
     public partial class Window4 : Window
     {
+         
+
         public Window4()
         {
-            InitializeComponent();
+            var bll = new LovePetsBLL();
 
+            InitializeComponent();
             ScheduleAppointmentCollection appointmentCollection = new ScheduleAppointmentCollection();
 
-            ScheduleAppointment clientMeeting = new ScheduleAppointment();
-            DateTime currentDate = DateTime.Now;
-            DateTime startTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 10, 0, 0);
-            DateTime endTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 12, 0, 0);
-            clientMeeting.StartTime = startTime;
-            clientMeeting.EndTime = endTime;
-            clientMeeting.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 139));
-            clientMeeting.Subject = "ClientMeeting";
-            appointmentCollection.Add(clientMeeting);
+
+            List<LovePetsBLL.Reminder_struct_bll> rems = bll.GetReminders();
+
+            for (int i = 0; i < rems.Count; i++)
+            {
+                ScheduleAppointment rem = new ScheduleAppointment();
+
+                rem.StartTime = rems[i].startTime;
+                rem.EndTime = rems[i].endTime;
+                rem.Subject = rems[i].subject;
+                rem.Location = rems[i].location;
+                rem.Notes = rems[i].notes;
+                rem.RecurrenceRule = rems[i].recurrenceRule;
+                rem.AppointmentBackground = new SolidColorBrush(Color.FromRgb((byte)rems[i].backR, (byte)rems[i].backG, (byte)rems[i].backB));
+                rem.Foreground = new SolidColorBrush(Color.FromRgb((byte)rems[i].frontR, (byte)rems[i].frontG, (byte)rems[i].frontB));
+
+                appointmentCollection.Add(rem); 
+            }
+
             Schedule.ItemsSource = appointmentCollection;
+
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+
+            var bll = new LovePetsBLL();
+                       
+
+
+
+            bll.AddNewReminder();
+
         }
     }
 

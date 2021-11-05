@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answers">
           <Key>
             <PropertyRef Name="ID" />
@@ -69,10 +69,19 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RemindingDate" Type="datetime" Nullable="false" />
-          <Property Name="Reminding" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="ReminderType" Type="nvarchar" MaxLength="500" />
-          <Property Name="ProfileID" Type="int" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="500" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsRecursive" Type="bit" />
+          <Property Name="RecurrenceRule" Type="nvarchar" MaxLength="500" />
+          <Property Name="BackR" Type="int" />
+          <Property Name="BackG" Type="int" />
+          <Property Name="BackB" Type="int" />
+          <Property Name="FrontR" Type="int" />
+          <Property Name="FrontG" Type="int" />
+          <Property Name="FrontB" Type="int" />
         </EntityType>
         <EntityType Name="Results">
           <Key>
@@ -113,20 +122,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reminder__Profil__5AEE82B9">
-          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Reminder" Type="Self.Reminder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profile">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Reminder">
-              <PropertyRef Name="ProfileID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Database1ModelStoreContainer">
           <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
@@ -143,13 +138,8 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Information" EntitySet="Information" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reminder__Profil__5AEE82B9" Association="Self.FK__Reminder__Profil__5AEE82B9">
-            <End Role="Profile" EntitySet="Profile" />
-            <End Role="Reminder" EntitySet="Reminder" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -205,7 +195,6 @@
           <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Age" Type="Int32" Nullable="false" />
           <Property Name="Photolink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Reminders" Relationship="Self.FK__Reminder__Profil__5AEE82B9" FromRole="Profile" ToRole="Reminder" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -216,17 +205,6 @@
           <Property Name="QuestionType" Type="Boolean" Nullable="false" />
           <Property Name="PhotoLink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Answers" Relationship="Self.FK__Answers__Questio__6477ECF3" FromRole="Questions" ToRole="Answers" />
-        </EntityType>
-        <EntityType Name="Reminder">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RemindingDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Reminding" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ReminderType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ProfileID" Type="Int32" />
-          <NavigationProperty Name="Profile" Relationship="Self.FK__Reminder__Profil__5AEE82B9" FromRole="Reminder" ToRole="Profile" />
         </EntityType>
         <EntityType Name="Result">
           <Key>
@@ -267,27 +245,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reminder__Profil__5AEE82B9">
-          <End Role="Profile" Type="Self.Profile" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Reminder" Type="Self.Reminder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profile">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Reminder">
-              <PropertyRef Name="ProfileID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Database1Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers" EntityType="Self.Answer" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Information" EntityType="Self.Information" />
           <EntitySet Name="Profiles" EntityType="Self.Profile" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
-          <EntitySet Name="Reminders" EntityType="Self.Reminder" />
           <EntitySet Name="Results" EntityType="Self.Result" />
           <AssociationSet Name="FK__Answers__Questio__6477ECF3" Association="Self.FK__Answers__Questio__6477ECF3">
             <End Role="Questions" EntitySet="Questions" />
@@ -297,11 +260,27 @@
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Information" EntitySet="Information" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reminder__Profil__5AEE82B9" Association="Self.FK__Reminder__Profil__5AEE82B9">
-            <End Role="Profile" EntitySet="Profiles" />
-            <End Role="Reminder" EntitySet="Reminders" />
-          </AssociationSet>
+          <EntitySet Name="Reminders" EntityType="Database1Model.Reminder" />
         </EntityContainer>
+        <EntityType Name="Reminder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsRecursive" Type="Boolean" />
+          <Property Name="RecurrenceRule" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BackR" Type="Int32" />
+          <Property Name="BackG" Type="Int32" />
+          <Property Name="BackB" Type="Int32" />
+          <Property Name="FrontR" Type="Int32" />
+          <Property Name="FrontG" Type="Int32" />
+          <Property Name="FrontB" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -372,17 +351,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Reminders">
-            <EntityTypeMapping TypeName="Database1Model.Reminder">
-              <MappingFragment StoreEntitySet="Reminder">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RemindingDate" ColumnName="RemindingDate" />
-                <ScalarProperty Name="Reminding" ColumnName="Reminding" />
-                <ScalarProperty Name="ReminderType" ColumnName="ReminderType" />
-                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Results">
             <EntityTypeMapping TypeName="Database1Model.Result">
               <MappingFragment StoreEntitySet="Results">
@@ -392,6 +360,26 @@
                 <ScalarProperty Name="PhotoLink1" ColumnName="PhotoLink1" />
                 <ScalarProperty Name="PhotoLink2" ColumnName="PhotoLink2" />
                 <ScalarProperty Name="PhotoLink3" ColumnName="PhotoLink3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reminders">
+            <EntityTypeMapping TypeName="Database1Model.Reminder">
+              <MappingFragment StoreEntitySet="Reminder">
+                <ScalarProperty Name="FrontB" ColumnName="FrontB" />
+                <ScalarProperty Name="FrontG" ColumnName="FrontG" />
+                <ScalarProperty Name="FrontR" ColumnName="FrontR" />
+                <ScalarProperty Name="BackB" ColumnName="BackB" />
+                <ScalarProperty Name="BackG" ColumnName="BackG" />
+                <ScalarProperty Name="BackR" ColumnName="BackR" />
+                <ScalarProperty Name="RecurrenceRule" ColumnName="RecurrenceRule" />
+                <ScalarProperty Name="IsRecursive" ColumnName="IsRecursive" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

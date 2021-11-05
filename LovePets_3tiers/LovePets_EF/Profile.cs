@@ -14,12 +14,6 @@ namespace LovePets_EF
     
     public partial class Profile
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Profile()
-        {
-            this.Reminders = new HashSet<Reminder>();
-        }
-    
         public int ID { get; set; }
         public string ProfileFullname { get; set; }
         public string ProfileName { get; set; }
@@ -29,8 +23,5 @@ namespace LovePets_EF
         public System.DateTime BirthDate { get; set; }
         public int Age { get; set; }
         public string Photolink { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reminder> Reminders { get; set; }
     }
 }

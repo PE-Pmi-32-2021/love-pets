@@ -10,11 +10,10 @@
         <EntityTypeShape EntityType="Database1Model.Information" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.Profile" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.Question" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Database1Model.Reminder" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Database1Model.Result" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="Database1Model.FK__Answers__Questio__6477ECF3" ManuallyRouted="false" />
         <AssociationConnector Association="Database1Model.FK__Informati__Categ__5FB337D6" ManuallyRouted="false" />
-        <AssociationConnector Association="Database1Model.FK__Reminder__Profil__5AEE82B9" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Database1Model.Reminder" Width="1.5" PointX="3.125" PointY="0.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

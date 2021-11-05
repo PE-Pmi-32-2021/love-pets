@@ -15,11 +15,18 @@ namespace LovePets_EF
     public partial class Reminder
     {
         public int ID { get; set; }
-        public System.DateTime RemindingDate { get; set; }
-        public string Reminding { get; set; }
-        public string ReminderType { get; set; }
-        public Nullable<int> ProfileID { get; set; }
-    
-        public virtual Profile Profile { get; set; }
+        public System.DateTime EndTime { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public string Subject { get; set; }
+        public string Location { get; set; }
+        public string Notes { get; set; }
+        public Nullable<bool> IsRecursive { get; set; }
+        public string RecurrenceRule { get; set; }
+        public Nullable<int> BackR { get; set; }
+        public Nullable<int> BackG { get; set; }
+        public Nullable<int> BackB { get; set; }
+        public Nullable<int> FrontR { get; set; }
+        public Nullable<int> FrontG { get; set; }
+        public Nullable<int> FrontB { get; set; }
     }
 }

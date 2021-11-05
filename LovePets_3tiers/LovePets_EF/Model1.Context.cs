@@ -30,7 +30,7 @@ namespace LovePets_EF
         public virtual DbSet<Information> Information { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
-        public virtual DbSet<Reminder> Reminders { get; set; }
         public virtual DbSet<Result> Results { get; set; }
+        public virtual DbSet<Reminder> Reminders { get; set; }
     }
 }
