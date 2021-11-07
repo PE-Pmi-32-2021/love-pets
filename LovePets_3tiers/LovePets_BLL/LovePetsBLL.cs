@@ -6,58 +6,29 @@ using System.Text;
 using System.Threading.Tasks;
 using LovePets_DAL;
 using LovePets_EF;
-
+using LovePets_Shared;
 
 namespace LovePets_BLL
 {
     public class LovePetsBLL
     {
 
-        public struct Reminder_struct_bll
-        {
-            public int id;
-            public DateTime endTime;
-            public DateTime startTime;
-            public string subject;
-            public string location;
-            public string notes;
-            public bool isRecursive;
-            public string recurrenceRule;
-            public int backR;
-            public int backG;
-            public int backB;
-            public int frontR;
-            public int frontG;
-            public int frontB;
-        }
-
-
-        static T CopyStruct<T>(ref object s1)
-        {
-            GCHandle handle = GCHandle.Alloc(s1, GCHandleType.Pinned);
-            T typedStruct = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
-            handle.Free();
-            return typedStruct;
-        }
-
-        public void AddNewReminder(Reminder_struct_bll rem)
+        public void AddNewReminder(Reminder_st rem)
         {
 
             ReminderDO reminder = new ReminderDO();
-            object temp = rem;
-            reminder.AddNewReminder(CopyStruct<ReminderDO.Reminder_struct>(ref temp));
+            reminder.AddNewReminder(rem);
 
         }
 
-        public List<Reminder_struct_bll> GetReminders()
+        public List<Reminder_st> GetReminders()
         {
-            List<Reminder_struct_bll> reminders = new List<Reminder_struct_bll>();
+            List<Reminder_st> reminders = new List<Reminder_st>();
 
             ReminderDO reminder = new ReminderDO();
             for (int i = 0; i < reminder.GetRemCount(); i++)
             {
-                object temp = reminder.GetReminder(i);
-                reminders.Add(CopyStruct<Reminder_struct_bll>(ref temp));
+                reminders.Add(reminder.GetReminder(i+1));
 
             }
 

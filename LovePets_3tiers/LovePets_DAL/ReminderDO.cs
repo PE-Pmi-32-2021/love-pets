@@ -4,34 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LovePets_EF;
+using LovePets_Shared;
 
 namespace LovePets_DAL
 {
     public class ReminderDO
     {
-
-        public struct Reminder_struct
-        {
-            public int id;
-            public DateTime endTime;
-            public DateTime startTime;
-            public string subject;
-            public string location;
-            public string notes;
-            public bool isRecursive;
-            public string recurrenceRule;
-            public int backR;
-            public int backG;
-            public int backB;
-            public int frontR;
-            public int frontG;
-            public int frontB;
-
-          
-
-
-        }
-
 
         public int GetRemCount()
         {
@@ -39,19 +17,20 @@ namespace LovePets_DAL
             return ne.Reminders.Count();
         }
 
-        public void AddNewReminder(Reminder_struct rem)
+        public void AddNewReminder(Reminder_st rem)
         {
             Database1Entities1 ne = new Database1Entities1();
-
+            var remDelete = (from u in ne.Reminders select u).ToList();
+            ne.Reminders.RemoveRange(remDelete);
             var reminder = new Reminder { ID = rem.id, EndTime = rem.endTime, StartTime = rem.startTime, Subject = rem.subject,
             Location = rem.location, Notes = rem.notes, IsRecursive = rem.isRecursive, RecurrenceRule = rem.recurrenceRule, 
             BackR = rem.backR, BackG = rem.backG, BackB = rem.backB, FrontR = rem.frontR, FrontG = rem.frontG, FrontB = rem.frontB};
             ne.Reminders.Add(reminder);
             ne.SaveChanges();
-
+            
         }
 
-        public Reminder_struct GetReminder(int id)
+        public Reminder_st GetReminder(int id)
         {
             Database1Entities1 ne = new Database1Entities1();
             var ID = (from u in ne.Reminders where u.ID == id select u.ID).ToList();
@@ -68,7 +47,7 @@ namespace LovePets_DAL
             var FrontR = (from u in ne.Reminders where u.ID == id select u.FrontR).ToList();
             var FrontG = (from u in ne.Reminders where u.ID == id select u.FrontG).ToList();
             var FrontB = (from u in ne.Reminders where u.ID == id select u.FrontB).ToList();
-            Reminder_struct temp;
+            Reminder_st temp = new Reminder_st();
 
             temp.id = ID[0];
             temp.endTime = EndTime[0];

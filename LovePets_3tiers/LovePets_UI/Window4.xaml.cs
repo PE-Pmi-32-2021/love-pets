@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LovePets_BLL;
+using LovePets_Shared;
 
 namespace LovePets_UI
 {
@@ -33,7 +34,7 @@ namespace LovePets_UI
             ScheduleAppointmentCollection appointmentCollection = new ScheduleAppointmentCollection();
 
 
-            List<LovePetsBLL.Reminder_struct_bll> rems = bll.GetReminders();
+            List<Reminder_st> rems = bll.GetReminders();
 
             for (int i = 0; i < rems.Count; i++)
             {
@@ -57,14 +58,54 @@ namespace LovePets_UI
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-
+            ScheduleAppointmentCollection appointmentCollection = (ScheduleAppointmentCollection)Schedule.ItemsSource;
             var bll = new LovePetsBLL();
-                       
+            foreach(var item in appointmentCollection)
+            {
+                Reminder_st rem = new Reminder_st();
+                rem.startTime = item.StartTime;
+                rem.endTime = item.EndTime;
+                rem.subject = item.Subject;
+                rem.location = item.Location;
+                rem.notes = item.Notes;
+                rem.recurrenceRule = item.RecurrenceRule;
+                rem.backR = ((SolidColorBrush)item.AppointmentBackground).Color.R;
+                rem.backG = ((SolidColorBrush)item.AppointmentBackground).Color.G;
+                rem.backB = ((SolidColorBrush)item.AppointmentBackground).Color.B;
+                rem.frontR = ((SolidColorBrush)item.Foreground).Color.R;
+                rem.frontG = ((SolidColorBrush)item.Foreground).Color.G;
+                rem.frontB = ((SolidColorBrush)item.Foreground).Color.B;
 
+                bll.AddNewReminder(rem);
+            }
+ 
+        }
+ 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ScheduleAppointmentCollection appointmentCollection = (ScheduleAppointmentCollection)Schedule.ItemsSource;
+            var bll = new LovePetsBLL();
+            foreach (var item in appointmentCollection)
+            {
+                Reminder_st rem = new Reminder_st();
+                rem.startTime = item.StartTime;
+                rem.endTime = item.EndTime;
+                rem.subject = item.Subject;
+                rem.location = item.Location;
+                rem.notes = item.Notes;
+                rem.recurrenceRule = item.RecurrenceRule;
+                rem.backR = ((SolidColorBrush)item.AppointmentBackground).Color.R;
+                rem.backG = ((SolidColorBrush)item.AppointmentBackground).Color.G;
+                rem.backB = ((SolidColorBrush)item.AppointmentBackground).Color.B;
+                rem.frontR = ((SolidColorBrush)item.Foreground).Color.R;
+                rem.frontG = ((SolidColorBrush)item.Foreground).Color.G;
+                rem.frontB = ((SolidColorBrush)item.Foreground).Color.B;
 
-
-            bll.AddNewReminder();
-
+                bll.AddNewReminder(rem);
+            }
+            Window1 window1 = new Window1();
+            this.Visibility = Visibility.Hidden;
+            window1.Show();
         }
     }
 
