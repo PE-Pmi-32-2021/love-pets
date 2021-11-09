@@ -20,11 +20,11 @@
                 <ImageBrush x:Name="Foteo" Stretch="Fill"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Button x:Name="profile1" Content="+" HorizontalAlignment="Left" Height="56" Margin="1320,288,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Click="Button_Click_1"  Visibility="Hidden" Grid.ColumnSpan="3"/>
-        <Button x:Name="profile2" Content="+" HorizontalAlignment="Left" Height="56" Margin="1320,370,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" Grid.ColumnSpan="3"/>
-        <Button x:Name="profile3" Content="*" HorizontalAlignment="Left" Height="56" Margin="1320,452,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" Grid.ColumnSpan="3"/>
-        <Button x:Name="profile4" Content="-" HorizontalAlignment="Left" Height="56" Margin="1320,542,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" Grid.ColumnSpan="3"/>
-        <Button x:Name="profile5" Content="-" HorizontalAlignment="Left" Height="56" Margin="1320,622,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" Grid.ColumnSpan="3" />
+        <Button x:Name="profile1"  HorizontalAlignment="Left" Height="56" Margin="1320,288,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Click="Button_Click_1"  Visibility="Hidden" Grid.ColumnSpan="3"/>
+        <Button x:Name="profile2" HorizontalAlignment="Left" Height="56" Margin="1320,370,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" Grid.ColumnSpan="3" Click="Button_Click_Profile2"/>
+        <Button x:Name="profile3"  HorizontalAlignment="Left" Height="56" Margin="1320,452,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" Grid.ColumnSpan="3" Click="Button_Click_Profile3"/>
+        <Button x:Name="profile4"  HorizontalAlignment="Left" Height="56" Margin="1320,542,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" Grid.ColumnSpan="3" Click="Button_Click_Profile4"/>
+        <Button x:Name="profile5" HorizontalAlignment="Left" Height="56" Margin="1320,622,0,0" VerticalAlignment="Top" Width="155" FontSize="24" Visibility="Hidden" Grid.ColumnSpan="3" Click="Button_Click_Profile5" />
         <TextBox x:Name="profile_name" HorizontalAlignment="Left" Height="18" Margin="788,226,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179" TextChanged="profile_name_TextChanged" Grid.ColumnSpan="3"/>
         <Label Content="Кличка" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="699,218,0,0" Grid.ColumnSpan="3"/>
         <TextBox x:Name="breed" HorizontalAlignment="Left" Height="18" Margin="788,274,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179" Grid.ColumnSpan="3"/>
@@ -35,7 +35,6 @@
             <TextBlock>Boy</TextBlock>
         </ComboBox>
         <DatePicker x:Name="date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="788,417,0,0" SelectedDateChanged="date_SelectedDateChanged" Grid.ColumnSpan="3"/>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="492" Margin="117,722,0,0" Click="Button_Click_2" Grid.ColumnSpan="3"/>
         <TextBox x:Name="full_name" HorizontalAlignment="Left" Height="18" Margin="182,646,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="179" Grid.ColumnSpan="3"/>
 
 

@@ -21,17 +21,21 @@ namespace LovePets_UI
     /// </summary>
     public partial class Window1 : Window
     {
-        
+        static int current_id = 0;
+        List<Button> profiles;
+
+
         public Window1()
         {
             InitializeComponent();
+            
             El.MouseUp += ellipse_MouseUp;
 
             var bll = new LovePetsBLL();
 
             if (bll.ProfilesCountGet() == 0)
             {
-                bll.AddDefaultPhoto();
+                bll.AddDefaultProfile();
 
             }
             else
@@ -41,14 +45,23 @@ namespace LovePets_UI
 
 
 
-            List<Button> profiles = new List<Button>() { profile1, profile2, profile3, profile4, profile5 };
-            for (int i = 0; i <= bll.ProfilesCountGet(); i++)
+            profiles = new List<Button>() { profile1, profile2, profile3, profile4, profile5 };
+            for (int i = 0; i < bll.ProfilesCountGet() + 1 && i < 5; i++)
             {
                 profiles[i].Visibility = Visibility.Visible;
             }
+            for (int i = 0; i < bll.ProfilesCountGet(); i++)
+            {
+                profiles[i].Content = bll.GetProfileName(i + 1);
+            }
+        
+            for (int i = bll.ProfilesCountGet(); i < 5; i++)
+            {
+                profiles[i].Content = "+";
+            }
 
-            // load photo
-            BitmapImage lp = new BitmapImage();
+                // load photo
+                BitmapImage lp = new BitmapImage();
             lp.BeginInit();
             lp.UriSource = new Uri(new LovePetsBLL().GetFoteo(1));
             lp.EndInit();
@@ -73,7 +86,8 @@ namespace LovePets_UI
         {
 
             var bll = new LovePetsBLL();
-            bll.UpdateProfileName(1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
+
+            bll.UpdateProfile(current_id+1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
 
 
 
@@ -106,11 +120,92 @@ namespace LovePets_UI
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            UpdateProfileo(0);
+        }
+
+
+        private void Button_Click_Profile2(object sender, RoutedEventArgs e)
+        {
+            UpdateProfileo(1);
+        }
+
+        private void Button_Click_Profile3(object sender, RoutedEventArgs e)
+        {
+            UpdateProfileo(2);
+        }
+
+        private void Button_Click_Profile4(object sender, RoutedEventArgs e)
+        {
+            UpdateProfileo(3);
+        }
+        private void Button_Click_Profile5(object sender, RoutedEventArgs e)
+        {
+            UpdateProfileo(4);
         }
 
         private void profile_name_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (profiles != null)
+            {
+                profiles[current_id].Content = profile_name.Text;
+            }
+        }
+
+        void UpdateProfileo(int button_id)
+        {
+            var bll = new LovePetsBLL();
+            bll.UpdateProfile(current_id+1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
+
+            if (profiles[button_id].Content.ToString() == "+" && bll.ProfilesCountGet() <= 5)
+            {
+
+                bll.AddDefaultProfile();
+                current_id++;
+                profiles[current_id].Content = bll.GetProfileName(current_id + 1);
+
+                for (int i = 0; i < bll.ProfilesCountGet() + 1 && i < 5; i++)
+                {
+                    profiles[i].Visibility = Visibility.Visible;
+                }
+                for (int i = 0; i < bll.ProfilesCountGet(); i++)
+                {
+                    profiles[i].Content = bll.GetProfileName(i + 1);
+                }
+
+                for (int i = bll.ProfilesCountGet(); i < 5; i++)
+                {
+                    profiles[i].Content = "+";
+                }
+
+            }
+            else
+            {
+                current_id = button_id;
+            }
+
+
+           
+
+            // load photo
+            BitmapImage lp = new BitmapImage();
+            lp.BeginInit();
+            lp.UriSource = new Uri(new LovePetsBLL().GetFoteo(current_id + 1));
+            lp.EndInit();
+
+            ImageBrush foteo = ((ImageBrush)El.FindName("Foteo"));
+            foteo.ImageSource = lp;
+
+
+
+            // load info
+            profile_name.Text = bll.GetProfileName(current_id+1);
+            breed.Text = bll.GetBreed(current_id + 1);
+            color.Text = bll.GetColoring(current_id + 1);
+            sex.SelectedIndex = Convert.ToInt32(bll.GetSex(current_id + 1));
+            date.SelectedDate = bll.GetBirthdate(current_id + 1);
+            age.Content = bll.GetAge(current_id + 1);
+            full_name.Text = bll.GetProfileFullName(current_id + 1);
+
            
         }
 
@@ -122,15 +217,10 @@ namespace LovePets_UI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var bll = new LovePetsBLL();
-            bll.UpdateProfileName(1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
+            bll.UpdateProfile(current_id+1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            Window4 calendarwindow = new Window4();
-            this.Visibility = Visibility.Hidden;
-            calendarwindow.Show();
-        }
+      
     }
 }

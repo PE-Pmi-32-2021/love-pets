@@ -24,7 +24,7 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Button Content="Створити профіль тваринки"  Height="64" Margin="191,30.4,382,9.6" Click="Button_Click" Background="#FF904D4D" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="383" Grid.ColumnSpan="3"/>
-        <Button Content="Знайти інформацію про тваринку" Grid.Column="2" HorizontalAlignment="Center" Height="64" Margin="0.4,30.4,0,9.6" VerticalAlignment="Center" Width="382" RenderTransformOrigin="0.497,2.27" Grid.Row="3"/>
+        <Button Content="Знайти інформацію про тваринку" Grid.Column="2" HorizontalAlignment="Center" Height="64" Margin="0.4,30.4,0,9.6" VerticalAlignment="Center" Width="382" RenderTransformOrigin="0.497,2.27" Grid.Row="3" Click="Button_Click_1"/>
         <Button Content="Обрати собі тваринку" Grid.Column="3" HorizontalAlignment="Center" Height="64" Margin="0,30.4,0.4,9.6" VerticalAlignment="Center" Width="382" RenderTransformOrigin="0.485,2.391" Grid.Row="2"/>
         <Image  Grid.Column="2" Grid.Row="1"/>
 

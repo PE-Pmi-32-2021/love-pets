@@ -26,15 +26,21 @@ namespace LovePets_BLL
             List<Reminder_st> reminders = new List<Reminder_st>();
 
             ReminderDO reminder = new ReminderDO();
-            for (int i = 0; i < reminder.GetRemCount(); i++)
+            
+            foreach(var i in reminder.GetIds())
             {
-                reminders.Add(reminder.GetReminder(i+1));
+                reminders.Add(reminder.GetReminder(i));
 
             }
-
+            
             return reminders;
         }
 
+        public void DeleteReminders()
+        {
+            ReminderDO reminder = new ReminderDO();
+            reminder.Delete();
+        }
 
 
 
@@ -58,13 +64,13 @@ namespace LovePets_BLL
         }
 
 
-        public void AddDefaultPhoto()
+        public void AddDefaultProfile()
         {
             ProfileDO profile = new ProfileDO();
             profile.AddNewProfile("Enter full name", "Enter profile name", "Enter breed", "Enter color", false, new DateTime(2015, 7, 20), "C:/love-pets/love-pets/LovePets_3tiers/LovePets_UI/Photos/default_photo.png");
         }
 
-        public void UpdateProfileName(int id, string full_name, string profile_name, string breed, string color, bool sex, System.DateTime birth_date)
+        public void UpdateProfile(int id, string full_name, string profile_name, string breed, string color, bool sex, System.DateTime birth_date)
         {
             ProfileDO profile = new ProfileDO();
             profile.UpdateProfileName(id, full_name, profile_name, breed, color, sex, birth_date);

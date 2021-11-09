@@ -17,13 +17,24 @@ namespace LovePets_DAL
             return ne.Reminders.Count();
         }
 
+
+        public List<int> GetIds()
+        {
+            Database1Entities1 ne = new Database1Entities1();
+            var ID = (from u in ne.Reminders select u.ID).ToList();
+            return ID;
+        }
+        public void Delete() {
+            Database1Entities1 ne = new Database1Entities1();
+            var remDelete = (from u in ne.Reminders select u);
+            ne.Reminders.RemoveRange(remDelete);
+            ne.SaveChanges();
+        }
         public void AddNewReminder(Reminder_st rem)
         {
             Database1Entities1 ne = new Database1Entities1();
-            var remDelete = (from u in ne.Reminders select u).ToList();
-            ne.Reminders.RemoveRange(remDelete);
             var reminder = new Reminder { ID = rem.id, EndTime = rem.endTime, StartTime = rem.startTime, Subject = rem.subject,
-            Location = rem.location, Notes = rem.notes, IsRecursive = rem.isRecursive, RecurrenceRule = rem.recurrenceRule, 
+            Location = rem.location, Notes = rem.notes, IsRecursive =rem.isRecursive, RecurrenceRule = rem.recurrenceRule, 
             BackR = rem.backR, BackG = rem.backG, BackB = rem.backB, FrontR = rem.frontR, FrontG = rem.frontG, FrontB = rem.frontB};
             ne.Reminders.Add(reminder);
             ne.SaveChanges();
@@ -48,23 +59,23 @@ namespace LovePets_DAL
             var FrontG = (from u in ne.Reminders where u.ID == id select u.FrontG).ToList();
             var FrontB = (from u in ne.Reminders where u.ID == id select u.FrontB).ToList();
             Reminder_st temp = new Reminder_st();
-
-            temp.id = ID[0];
-            temp.endTime = EndTime[0];
-            temp.startTime = StartTime[0];
-            temp.subject = Subject[0];
-            temp.location = Location[0];
-            temp.notes = Notes[0];
-            temp.isRecursive = (bool)IsRecursive[0];
-            temp.recurrenceRule = RecurrenceRule[0];
-            temp.backR = (int)BackR[0];
-            temp.backG = (int)BackG[0];
-            temp.backB = (int)BackB[0];
-            temp.frontR =(int)FrontR[0];
-            temp.frontG =(int)FrontG[0];
-            temp.frontB = (int)FrontB[0];
-
-
+            if (ID.Count!=0)
+            {
+                temp.id = ID[0];
+                temp.endTime = EndTime[0];
+                temp.startTime = StartTime[0];
+                temp.subject = Subject[0];
+                temp.location = Location[0];
+                temp.notes = Notes[0];
+                temp.isRecursive = (bool)IsRecursive[0];
+                temp.recurrenceRule = RecurrenceRule[0];
+                temp.backR = (int)BackR[0];
+                temp.backG = (int)BackG[0];
+                temp.backB = (int)BackB[0];
+                temp.frontR = (int)FrontR[0];
+                temp.frontG = (int)FrontG[0];
+                temp.frontB = (int)FrontB[0];
+            }
             return temp;
         }
         

@@ -56,35 +56,11 @@ namespace LovePets_UI
 
         }
 
-        private void Window_Closing(object sender, CancelEventArgs e)
+         private void SaveChanges()
         {
             ScheduleAppointmentCollection appointmentCollection = (ScheduleAppointmentCollection)Schedule.ItemsSource;
             var bll = new LovePetsBLL();
-            foreach(var item in appointmentCollection)
-            {
-                Reminder_st rem = new Reminder_st();
-                rem.startTime = item.StartTime;
-                rem.endTime = item.EndTime;
-                rem.subject = item.Subject;
-                rem.location = item.Location;
-                rem.notes = item.Notes;
-                rem.recurrenceRule = item.RecurrenceRule;
-                rem.backR = ((SolidColorBrush)item.AppointmentBackground).Color.R;
-                rem.backG = ((SolidColorBrush)item.AppointmentBackground).Color.G;
-                rem.backB = ((SolidColorBrush)item.AppointmentBackground).Color.B;
-                rem.frontR = ((SolidColorBrush)item.Foreground).Color.R;
-                rem.frontG = ((SolidColorBrush)item.Foreground).Color.G;
-                rem.frontB = ((SolidColorBrush)item.Foreground).Color.B;
-
-                bll.AddNewReminder(rem);
-            }
- 
-        }
- 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            ScheduleAppointmentCollection appointmentCollection = (ScheduleAppointmentCollection)Schedule.ItemsSource;
-            var bll = new LovePetsBLL();
+            bll.DeleteReminders();
             foreach (var item in appointmentCollection)
             {
                 Reminder_st rem = new Reminder_st();
@@ -103,7 +79,22 @@ namespace LovePets_UI
 
                 bll.AddNewReminder(rem);
             }
-            Window1 window1 = new Window1();
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+
+            SaveChanges();
+
+
+        }
+ 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SaveChanges();
+
+
+            MainWindow window1 = new MainWindow();
             this.Visibility = Visibility.Hidden;
             window1.Show();
         }
