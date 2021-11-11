@@ -82,9 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnswersDO.cs" />
     <Compile Include="ProfileDO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionDO.cs" />
     <Compile Include="ReminderDO.cs" />
+    <Compile Include="ResultsDO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LovePets_EF\LovePets_EF.csproj">

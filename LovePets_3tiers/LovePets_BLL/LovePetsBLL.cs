@@ -13,6 +13,57 @@ namespace LovePets_BLL
     public class LovePetsBLL
     {
 
+
+        public string GetTitle(int id)
+        {
+
+            ResultsDO res = new ResultsDO();
+            return res.GetTitle(id);
+
+        }
+        public string GetParagraph1(int id)
+        {
+            ResultsDO res = new ResultsDO();
+            return res.GetParagraph1(id);
+        }
+        public string GetParagraph2(int id)
+        {
+            ResultsDO res = new ResultsDO();
+            return res.GetParagraph2(id);
+        }
+
+
+        public string GetPhoto1(int id)
+        {
+            ResultsDO res = new ResultsDO();
+            return res.GetPhoto1(id);
+        }
+
+        public string GetPhoto2(int id)
+        {
+            ResultsDO res = new ResultsDO();
+            return res.GetPhoto2(id);
+        }
+
+        public Dictionary<string, int> GetCategoryPoints(int id_question, int answer_num)
+        {
+            AnswersDO que = new AnswersDO();
+            return que.GetCategoryPoints(id_question, answer_num);
+
+        }
+
+        public List<string> GetAnswers(int id)
+        {
+            AnswersDO que = new AnswersDO();
+            return que.GetAnswers(id);
+        }
+
+        public string GetQuestion(int id)
+        {
+            QuestionDO que = new QuestionDO();
+            return que.GetQuestion(id);
+        }
+
         public void AddNewReminder(Reminder_st rem)
         {
 

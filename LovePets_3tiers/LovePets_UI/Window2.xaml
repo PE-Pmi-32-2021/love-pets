@@ -10,7 +10,20 @@
       Width="{x:Static SystemParameters.PrimaryScreenWidth}"  WindowStartupLocation="CenterScreen" >
     <Grid>
         <Button Content="Назад" HorizontalAlignment="Left" Height="28" Margin="34,27,0,0" VerticalAlignment="Top" Width="58" RenderTransformOrigin="1.313,2.926" Click="Button_Click"/>
-        <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="9.24,8.447" Margin="337,145,0,0" Height="98" Width="1090" FontSize="48"/>
+        <StackPanel Margin="353,280,260,164">
+            <TextBlock x:Name="question" Text="Label"  TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Height="132" Width="907" FontSize="36"/>
+            <RadioButton x:Name="answer1" Content="RadioButton" HorizontalAlignment="Left" Height="45"  Width="802" FontSize="20"/>
+            <RadioButton x:Name="answer2" Content="RadioButton" HorizontalAlignment="Left" Height="45" Width="802" FontSize="20"/>
+            <RadioButton x:Name="answer3" Content="RadioButton" HorizontalAlignment="Left" Height="45"  Width="802" FontSize="20"/>
+            <RadioButton x:Name="answer4" Content="RadioButton" HorizontalAlignment="Left" Height="45" Width="802" FontSize="20"/>
+            <RadioButton x:Name="answer5" Content="RadioButton" HorizontalAlignment="Left" Height="45"   Width="802" FontSize="20"/>
+        </StackPanel>
+        <Button x:Name="next_button" Content="Next" HorizontalAlignment="Left" Height="149" Margin="1258,676,0,0" VerticalAlignment="Top" Width="272" FontSize="72" Click="Button_Click_1"/>
+        <Image x:Name="image1" HorizontalAlignment="Left" Height="364" Margin="1003,116,0,0" VerticalAlignment="Top" Width="388" Visibility="Hidden"/>
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="376" Margin="167,280,0,0" VerticalAlignment="Top" Width="526" Visibility="Hidden"/>
+        <TextBlock x:Name="textblock1" HorizontalAlignment="Left" Height="85" Margin="295,55,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="902"  Visibility="Hidden" FontSize="36"/>
+        <TextBlock x:Name="textblock2" HorizontalAlignment="Left" Height="106" Margin="273,150,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="382" Visibility="Hidden"/>
+        <TextBlock x:Name="textblock3" HorizontalAlignment="Left" Height="106" Margin="789,626,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="382" Visibility="Hidden"/>
 
     </Grid>
 </Window>

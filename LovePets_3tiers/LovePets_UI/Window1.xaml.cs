@@ -61,9 +61,10 @@ namespace LovePets_UI
             }
 
             current_id = 0;
+            profiles[current_id].Background = Brushes.Red;
 
-                // load photo
-                BitmapImage lp = new BitmapImage();
+            // load photo
+            BitmapImage lp = new BitmapImage();
             lp.BeginInit();
             lp.UriSource = new Uri(new LovePetsBLL().GetFoteo(1));
             lp.EndInit();
@@ -155,6 +156,7 @@ namespace LovePets_UI
 
         void UpdateProfileo(int button_id)
         {
+            profiles[current_id].Background = Brushes.LightGray;
             var bll = new LovePetsBLL();
             bll.UpdateProfile(current_id+1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
 
@@ -208,7 +210,7 @@ namespace LovePets_UI
             age.Content = bll.GetAge(current_id + 1);
             full_name.Text = bll.GetProfileFullName(current_id + 1);
 
-           
+            profiles[current_id].Background = Brushes.Red;
         }
 
         private void date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
