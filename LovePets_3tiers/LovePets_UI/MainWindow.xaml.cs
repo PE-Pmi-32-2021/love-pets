@@ -38,5 +38,11 @@ namespace LovePets_UI
             this.Visibility = Visibility.Hidden;
             calendarwindow.Show();
         }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Window2 anctewindow = new Window2();
+            this.Visibility = Visibility.Hidden;
+            anctewindow.Show();
+        }
     }
 }

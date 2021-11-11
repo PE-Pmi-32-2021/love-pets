@@ -23,5 +23,12 @@ namespace LovePets_UI
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainwindow = new MainWindow();
+            this.Visibility = Visibility.Hidden;
+            mainwindow.Show();
+        }
     }
 }

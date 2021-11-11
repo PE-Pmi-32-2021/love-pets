@@ -8,7 +8,7 @@
         Title="Window3" Height="450" Width="800">
     <Grid>
         <Slider HorizontalAlignment="Left" Height="74" Margin="121,195,0,0" VerticalAlignment="Top" Width="439"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="46" Margin="34,27,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="1.313,2.926"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Height="26" Margin="34,27,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="1.313,2.926"/>
 
     </Grid>
 </Window>

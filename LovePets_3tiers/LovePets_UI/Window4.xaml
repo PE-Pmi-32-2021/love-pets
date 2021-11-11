@@ -10,11 +10,15 @@
       Width="{x:Static SystemParameters.PrimaryScreenWidth}"  WindowStartupLocation="CenterScreen" Closing="Window_Closing"
         >
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="649*"/>
+            <ColumnDefinition Width="116*"/>
+        </Grid.ColumnDefinitions>
 
-        <syncfusion:SfScheduler x:Name="Schedule" ViewType="Week" Margin="10,104,9.6,0.4">
+        <syncfusion:SfScheduler x:Name="Schedule" ViewType="Week" Margin="10,71,10,0" Grid.ColumnSpan="2">
 
         </syncfusion:SfScheduler>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Height="54" Click="Button_Click_1"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="98" Height="39" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

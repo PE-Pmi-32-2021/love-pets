@@ -60,6 +60,8 @@ namespace LovePets_UI
                 profiles[i].Content = "+";
             }
 
+            current_id = 0;
+
                 // load photo
                 BitmapImage lp = new BitmapImage();
             lp.BeginInit();
@@ -110,7 +112,7 @@ namespace LovePets_UI
                 lp.UriSource = new Uri(openFileDialog.FileName);
                 lp.EndInit();
 
-                new LovePetsBLL().UpdatePhoto(1, openFileDialog.FileName);
+                new LovePetsBLL().UpdatePhoto(current_id+1, openFileDialog.FileName);
 
                 ImageBrush foteo = ((ImageBrush)El.FindName("Foteo"));
                 foteo.ImageSource = lp;
