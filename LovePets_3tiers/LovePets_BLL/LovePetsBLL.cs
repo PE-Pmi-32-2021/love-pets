@@ -63,6 +63,12 @@ namespace LovePets_BLL
             QuestionDO que = new QuestionDO();
             return que.GetQuestion(id);
         }
+        public string GetQuestionPhoto(int id)
+        {
+            QuestionDO que = new QuestionDO();
+            return que.GetQuestionPhoto(id);
+            
+        }
 
         public void AddNewReminder(Reminder_st rem)
         {

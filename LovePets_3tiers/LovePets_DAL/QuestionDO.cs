@@ -19,5 +19,14 @@ namespace LovePets_DAL
 
             return que[0];
         }
+        public string GetQuestionPhoto(int id)
+        {
+            Database1Entities1 ne = new Database1Entities1();
+            var que = (from u in ne.Questions
+                           where u.ID == id
+                           select u.PhotoLink).ToList();
+
+            return que[0];
+        }
     }
 }

@@ -61,7 +61,7 @@ namespace LovePets_UI
             }
 
             current_id = 0;
-            profiles[current_id].Background = Brushes.Red;
+            profiles[current_id].Background = Brushes.PaleVioletRed;
 
             // load photo
             BitmapImage lp = new BitmapImage();
@@ -210,7 +210,7 @@ namespace LovePets_UI
             age.Content = bll.GetAge(current_id + 1);
             full_name.Text = bll.GetProfileFullName(current_id + 1);
 
-            profiles[current_id].Background = Brushes.Red;
+            profiles[current_id].Background = Brushes.PaleVioletRed;
         }
 
         private void date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

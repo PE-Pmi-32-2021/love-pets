@@ -11,14 +11,16 @@
         >
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="649*"/>
             <ColumnDefinition Width="116*"/>
         </Grid.ColumnDefinitions>
 
-        <syncfusion:SfScheduler x:Name="Schedule" ViewType="Week" Margin="10,71,10,0" Grid.ColumnSpan="2">
+        <syncfusion:SfScheduler x:Name="Schedule" ViewType="Week" Margin="10,71,9.6,0.4" Grid.ColumnSpan="3">
 
         </syncfusion:SfScheduler>
-        <Button Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="98" Height="39" Click="Button_Click_1"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="98" Height="39" Click="Button_Click_1" Grid.ColumnSpan="2"/>
+        <Image x:Name="logo" Source="C:\love-pets\love-pets\LovePets_3tiers\LovePets_UI\Photos\logo.png" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="41" Margin="658,10,0,0" VerticalAlignment="Top" Width="292"/>
 
     </Grid>
 </Window>

@@ -41,6 +41,7 @@ namespace LovePets_UI
 
             var bll = new LovePetsBLL();
             question.Text = bll.GetQuestion(1);
+            image3.Source = new BitmapImage(new Uri(bll.GetQuestionPhoto(1)));
 
             var answers_list = bll.GetAnswers(1);
 
@@ -71,7 +72,7 @@ namespace LovePets_UI
         // next
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            
             for (int i = 0; i < radioButtons.Count; i++)
             {
                 if (radioButtons[i].IsChecked == true)
@@ -93,7 +94,9 @@ namespace LovePets_UI
                     {
 
                         question.Text = bll.GetQuestion(current_question + 1);
+                        image3.Source = new BitmapImage(new Uri(bll.GetQuestionPhoto(current_question + 1)));
                         var answers_list = bll.GetAnswers(current_question + 1);
+                        radioButtons[0].IsChecked = true;
                         for (int j = 0; j < answers_list.Count; j++)
                         {
                             radioButtons[j].Content = answers_list[j];
@@ -111,6 +114,7 @@ namespace LovePets_UI
                     {
                         question.Visibility = Visibility.Hidden;
                         next_button.Visibility = Visibility.Hidden;
+                        image3.Visibility = Visibility.Hidden;
                         for (int j = 0; j < 5; j++)
                         {
                             radioButtons[j].Visibility = Visibility.Hidden;
