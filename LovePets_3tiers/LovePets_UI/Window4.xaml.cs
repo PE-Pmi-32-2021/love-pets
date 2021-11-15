@@ -98,6 +98,8 @@ namespace LovePets_UI
             this.Visibility = Visibility.Hidden;
             window1.Show();
         }
+
+        
     }
 
 

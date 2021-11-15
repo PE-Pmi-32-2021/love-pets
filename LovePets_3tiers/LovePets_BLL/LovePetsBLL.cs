@@ -124,7 +124,7 @@ namespace LovePets_BLL
         public void AddDefaultProfile()
         {
             ProfileDO profile = new ProfileDO();
-            profile.AddNewProfile("Enter full name", "Enter profile name", "Enter breed", "Enter color", false, new DateTime(2015, 7, 20), "C:/love-pets/love-pets/LovePets_3tiers/LovePets_UI/Photos/default_photo.png");
+            profile.AddNewProfile("Введіть повне ім'я", "Введіть кличку", "Введіть породу", "Введіть окрас", false, new DateTime(2015, 7, 20), "C:/love-pets/love-pets/LovePets_3tiers/LovePets_UI/Photos/default_photo.png");
         }
 
         public void UpdateProfile(int id, string full_name, string profile_name, string breed, string color, bool sex, System.DateTime birth_date)
