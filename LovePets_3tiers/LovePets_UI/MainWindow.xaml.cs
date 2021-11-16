@@ -44,5 +44,10 @@ namespace LovePets_UI
             this.Visibility = Visibility.Hidden;
             anctewindow.Show();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

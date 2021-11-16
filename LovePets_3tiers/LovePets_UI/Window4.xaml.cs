@@ -85,7 +85,7 @@ namespace LovePets_UI
         {
 
             SaveChanges();
-
+            System.Windows.Application.Current.Shutdown();
 
         }
  

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:LovePets_UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
-      Width="{x:Static SystemParameters.PrimaryScreenWidth}"  WindowStartupLocation="CenterScreen">
+      Width="{x:Static SystemParameters.PrimaryScreenWidth}"  WindowStartupLocation="CenterScreen"
+        Closed="Window_Closed">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

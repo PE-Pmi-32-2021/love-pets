@@ -179,5 +179,10 @@ namespace LovePets_UI
 
 
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

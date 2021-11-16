@@ -222,9 +222,7 @@ namespace LovePets_UI
         {
             var bll = new LovePetsBLL();
             bll.UpdateProfile(current_id+1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
-
+            System.Windows.Application.Current.Shutdown();
         }
-
-      
     }
 }
