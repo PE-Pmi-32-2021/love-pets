@@ -38,12 +38,6 @@ namespace LovePets_UI
                 bll.AddDefaultProfile();
 
             }
-            else
-            {
-
-            }
-
-
 
             profiles = new List<Button>() { profile1, profile2, profile3, profile4, profile5 };
             for (int i = 0; i < bll.ProfilesCountGet() + 1 && i < 5; i++)

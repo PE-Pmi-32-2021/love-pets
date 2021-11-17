@@ -78,17 +78,9 @@ namespace LovePets_UI
                 if (radioButtons[i].IsChecked == true)
                 {
                     var bll = new LovePetsBLL();
-                    Dictionary<string, int> categ_dict = bll.GetCategoryPoints(current_question + 1, i);
+                    bll.UpdateResults(results_dict, ++current_question, i);
 
 
-                    results_dict["dogs"] += categ_dict["dogs"];
-                    results_dict["cats"] += categ_dict["cats"];
-                    results_dict["rodents"] += categ_dict["rodents"];
-                    results_dict["reptiles"] += categ_dict["reptiles"];
-                    results_dict["birds"] += categ_dict["birds"];
-
-
-                    current_question += 1;
 
                     if (current_question < 20)
                     {
@@ -126,42 +118,7 @@ namespace LovePets_UI
                         textblock2.Visibility = Visibility.Visible;
                         textblock3.Visibility = Visibility.Visible;
 
-                        int masx = 0;
-                        string max_res = "";
-                        int index = 0;
-                        foreach (KeyValuePair<string, int> keyValue in results_dict)
-                        {
-                            if(keyValue.Value > masx)
-                            {
-                                masx = keyValue.Value;
-                                max_res = keyValue.Key;
-
-                            }
-                        }
-
-
-                        if(max_res == "dogs")
-                        {
-                            index = 1;
-                        }
-                        else if(max_res == "cats")
-                        {
-                            index = 2;
-                        }
-                        else if (max_res == "rodents")
-                        {
-                            index = 3;
-                        }
-                        else if (max_res == "reptiles")
-                        {
-                            index = 4;
-                        }
-                        else
-                        {
-                            index = 5;
-                        }
-
-
+                        int index = bll.ChosenAnimal(results_dict);
 
                         image1.Source = new BitmapImage(new Uri(bll.GetPhoto1(index)));
                         image2.Source = new BitmapImage(new Uri(bll.GetPhoto2(index)));

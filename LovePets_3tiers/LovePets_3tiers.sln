@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LovePets_EF", "LovePets_EF\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LovePets_Shared", "LovePets_Shared\LovePets_Shared.csproj", "{0B43FDA3-4E43-4E9F-A484-438F6AA13D15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LovePets_UT", "LovePets_UT\LovePets_UT.csproj", "{D3133834-9D1A-4CAE-B087-7D3972953791}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0B43FDA3-4E43-4E9F-A484-438F6AA13D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B43FDA3-4E43-4E9F-A484-438F6AA13D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B43FDA3-4E43-4E9F-A484-438F6AA13D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3133834-9D1A-4CAE-B087-7D3972953791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3133834-9D1A-4CAE-B087-7D3972953791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3133834-9D1A-4CAE-B087-7D3972953791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3133834-9D1A-4CAE-B087-7D3972953791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

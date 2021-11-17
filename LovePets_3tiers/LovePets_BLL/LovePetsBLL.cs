@@ -182,5 +182,55 @@ namespace LovePets_BLL
             return profile.GetAge(id);
         }
 
+        public void UpdateResults(Dictionary<string, int> results, int current_question, int questionID)
+        {
+            Dictionary<string, int> categ_dict = GetCategoryPoints(current_question, questionID);
+            results["dogs"] += categ_dict["dogs"];
+            results["cats"] += categ_dict["cats"];
+            results["rodents"] += categ_dict["rodents"];
+            results["reptiles"] += categ_dict["reptiles"];
+            results["birds"] += categ_dict["birds"];
+        }
+
+        public int ChosenAnimal( Dictionary<string, int> result)
+        {
+            int index;
+
+            int masx = 0;
+            string max_res = "";
+            foreach (KeyValuePair<string, int> keyValue in result)
+            {
+                if (keyValue.Value > masx)
+                {
+                    masx = keyValue.Value;
+                    max_res = keyValue.Key;
+
+                }
+            }
+
+
+            if (max_res == "dogs")
+            {
+                index = 1;
+            }
+            else if (max_res == "cats")
+            {
+                index = 2;
+            }
+            else if (max_res == "rodents")
+            {
+                index = 3;
+            }
+            else if (max_res == "reptiles")
+            {
+                index = 4;
+            }
+            else
+            {
+                index = 5;
+            }
+
+            return index;
+        }
     }
 }
