@@ -18,29 +18,6 @@
           <Property Name="Birds" Type="int" Nullable="false" />
           <Property Name="QuestionsID" Type="int" />
         </EntityType>
-        <EntityType Name="Categories">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Category" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Breed" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="PhotoLink" Type="nvarchar" MaxLength="500" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Information">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InGeneral" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Nutrition" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Care" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Health" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="PhotoLink1" Type="nvarchar" MaxLength="500" />
-          <Property Name="PhotoLink2" Type="nvarchar" MaxLength="500" />
-          <Property Name="PhotoLink3" Type="nvarchar" MaxLength="500" />
-          <Property Name="CategoriesID" Type="int" />
-        </EntityType>
         <EntityType Name="Profile">
           <Key>
             <PropertyRef Name="ID" />
@@ -108,24 +85,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Informati__Categ__5FB337D6">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Information" Type="Self.Information" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Information">
-              <PropertyRef Name="CategoriesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Database1ModelStoreContainer">
           <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Information" EntityType="Self.Information" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reminder" EntityType="Self.Reminder" Schema="dbo" store:Type="Tables" />
@@ -133,10 +94,6 @@
           <AssociationSet Name="FK__Answers__Questio__6477ECF3" Association="Self.FK__Answers__Questio__6477ECF3">
             <End Role="Questions" EntitySet="Questions" />
             <End Role="Answers" EntitySet="Answers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Informati__Categ__5FB337D6" Association="Self.FK__Informati__Categ__5FB337D6">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Information" EntitySet="Information" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -156,31 +113,6 @@
           <Property Name="Birds" Type="Int32" Nullable="false" />
           <Property Name="QuestionsID" Type="Int32" />
           <NavigationProperty Name="Question" Relationship="Self.FK__Answers__Questio__6477ECF3" FromRole="Answers" ToRole="Questions" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Category1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Breed" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhotoLink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Information" Relationship="Self.FK__Informati__Categ__5FB337D6" FromRole="Categories" ToRole="Information" />
-        </EntityType>
-        <EntityType Name="Information">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InGeneral" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Nutrition" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Care" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Health" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhotoLink1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PhotoLink2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PhotoLink3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CategoriesID" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__Informati__Categ__5FB337D6" FromRole="Information" ToRole="Categories" />
         </EntityType>
         <EntityType Name="Profile">
           <Key>
@@ -231,34 +163,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Informati__Categ__5FB337D6">
-          <End Role="Categories" Type="Self.Category" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Information" Type="Self.Information" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Information">
-              <PropertyRef Name="CategoriesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Database1Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answers" EntityType="Self.Answer" />
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Information" EntityType="Self.Information" />
           <EntitySet Name="Profiles" EntityType="Self.Profile" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="Results" EntityType="Self.Result" />
           <AssociationSet Name="FK__Answers__Questio__6477ECF3" Association="Self.FK__Answers__Questio__6477ECF3">
             <End Role="Questions" EntitySet="Questions" />
             <End Role="Answers" EntitySet="Answers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Informati__Categ__5FB337D6" Association="Self.FK__Informati__Categ__5FB337D6">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Information" EntitySet="Information" />
           </AssociationSet>
           <EntitySet Name="Reminders" EntityType="Database1Model.Reminder" />
         </EntityContainer>
@@ -298,31 +210,6 @@
                 <ScalarProperty Name="Reptiles" ColumnName="Reptiles" />
                 <ScalarProperty Name="Birds" ColumnName="Birds" />
                 <ScalarProperty Name="QuestionsID" ColumnName="QuestionsID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Database1Model.Category">
-              <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Category1" ColumnName="Category" />
-                <ScalarProperty Name="Breed" ColumnName="Breed" />
-                <ScalarProperty Name="PhotoLink" ColumnName="PhotoLink" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Information">
-            <EntityTypeMapping TypeName="Database1Model.Information">
-              <MappingFragment StoreEntitySet="Information">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="InGeneral" ColumnName="InGeneral" />
-                <ScalarProperty Name="Nutrition" ColumnName="Nutrition" />
-                <ScalarProperty Name="Care" ColumnName="Care" />
-                <ScalarProperty Name="Health" ColumnName="Health" />
-                <ScalarProperty Name="PhotoLink1" ColumnName="PhotoLink1" />
-                <ScalarProperty Name="PhotoLink2" ColumnName="PhotoLink2" />
-                <ScalarProperty Name="PhotoLink3" ColumnName="PhotoLink3" />
-                <ScalarProperty Name="CategoriesID" ColumnName="CategoriesID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

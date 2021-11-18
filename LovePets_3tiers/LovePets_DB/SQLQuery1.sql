@@ -1,7 +1,5 @@
 ﻿drop TABLE Profile;
 drop table Reminder;
-drop table Categories;
-drop TABLE Information;
 drop table Questions;
 drop table Answers;
 drop table Results;
@@ -69,41 +67,6 @@ delete from reminder;
 Select * from reminder
 
 
-CREATE TABLE Categories (
-  ID int IDENTITY(1,1) Primary key,
-  Category [NVARCHAR](500) NOT NULL,
-  Breed [NVARCHAR](500) NOT NULL,
-  PhotoLink [NVARCHAR](500) NOT NULL
-);
-
-INSERT INTO Categories ([Category], [Breed], [PhotoLink])
-VALUES
- (N'Dog', N'Border-collie', N'jhvbjkvkj'),
- (N'Cat', N'sfinks', N'jkbvjkbvk'),
- (N'Bird', N'owl', N'fxcfghjk')
-;
-Select * from Categories
-DROP TABLE Categories;
-
-CREATE TABLE Information (
-  ID int IDENTITY(1,1) Primary key,
-  InGeneral [NVARCHAR](500) NOT NULL,
-  Nutrition [NVARCHAR](500) NOT NULL,
-  Care [NVARCHAR](500) NOT NULL,
-  Health [NVARCHAR](500) NOT NULL,
-  PhotoLink1 [NVARCHAR](500),
-  PhotoLink2 [NVARCHAR](500),
-  PhotoLink3 [NVARCHAR](500),
-  CategoriesID int REFERENCES Categories(ID) ON DELETE CASCADE
-);
-
-DROP TABLE Information;
-
-INSERT INTO Information ([InGeneral], [Nutrition], [Care], [Health], [PhotoLink1], [PhotoLink2], [PhotoLink3], [CategoriesID])
-VALUES
- (N'DogBla', N'food1', N'love', N'Health1', N'irhwrioh', N'bebaetbaetn', N'erbebetb', 1)
-;
-Select * from Information
 
 
 CREATE TABLE Questions (

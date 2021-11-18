@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LovePets_EF", "LovePets_EF\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LovePets_Shared", "LovePets_Shared\LovePets_Shared.csproj", "{0B43FDA3-4E43-4E9F-A484-438F6AA13D15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LovePets_UT", "LovePets_UT\LovePets_UT.csproj", "{D3133834-9D1A-4CAE-B087-7D3972953791}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LovePets_UT", "LovePets_UT\LovePets_UT.csproj", "{D3133834-9D1A-4CAE-B087-7D3972953791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

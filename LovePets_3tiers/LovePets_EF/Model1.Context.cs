@@ -26,8 +26,6 @@ namespace LovePets_EF
         }
     
         public virtual DbSet<Answer> Answers { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Information> Information { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Result> Results { get; set; }

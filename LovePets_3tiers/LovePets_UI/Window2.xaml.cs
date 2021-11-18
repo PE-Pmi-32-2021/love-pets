@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LovePets_BLL;
+using log4net;
 
 namespace LovePets_UI
 {
@@ -28,9 +29,16 @@ namespace LovePets_UI
 
         int current_question = 0;
 
+
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public Window2()
         {
             InitializeComponent();
+
+            log4net.Config.XmlConfigurator.Configure();
+
+            log.Info("Entered to quize window!");
 
             results_dict.Add("dogs", 0);
             results_dict.Add("cats", 0);
@@ -57,12 +65,14 @@ namespace LovePets_UI
                 radioButtons[i].Visibility = Visibility.Hidden;
             }
             current_question = 0;
-
+            log.Info("Loaded first question!");
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            log.Info("Exit from quize window!");
+
             MainWindow mainwindow = new MainWindow();
             this.Visibility = Visibility.Hidden;
             mainwindow.Show();
@@ -72,7 +82,7 @@ namespace LovePets_UI
         // next
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
+          
             for (int i = 0; i < radioButtons.Count; i++)
             {
                 if (radioButtons[i].IsChecked == true)
@@ -101,6 +111,8 @@ namespace LovePets_UI
                         {
                             radioButtons[j].Visibility = Visibility.Hidden;
                         }
+
+                        log.Info("Next question loaded!");
                     }
                     else
                     {
@@ -128,6 +140,8 @@ namespace LovePets_UI
 
                         textblock3.Text = bll.GetParagraph2(index);
 
+                        log.Info("Result loaded!");
+
 
 
                     }
@@ -139,6 +153,7 @@ namespace LovePets_UI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            log.Info("Program closed!");
             System.Windows.Application.Current.Shutdown();
         }
     }

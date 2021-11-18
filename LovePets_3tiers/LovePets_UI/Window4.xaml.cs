@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LovePets_BLL;
 using LovePets_Shared;
+using log4net;
 
 namespace LovePets_UI
 {
@@ -24,13 +25,18 @@ namespace LovePets_UI
     /// </summary>
     public partial class Window4 : Window
     {
-         
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public Window4()
         {
             var bll = new LovePetsBLL();
 
+            log4net.Config.XmlConfigurator.Configure();
+
             InitializeComponent();
+
+            log.Info("Entered to reminder window!");
+
             ScheduleAppointmentCollection appointmentCollection = new ScheduleAppointmentCollection();
 
 
@@ -52,7 +58,9 @@ namespace LovePets_UI
                 appointmentCollection.Add(rem); 
             }
 
+            
             Schedule.ItemsSource = appointmentCollection;
+            log.Info("Loaded appointments!");
 
         }
 
@@ -79,12 +87,15 @@ namespace LovePets_UI
 
                 bll.AddNewReminder(rem);
             }
+
+            log.Info("Save changes from reminders!");
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
 
             SaveChanges();
+            log.Info("Program closed!");
             System.Windows.Application.Current.Shutdown();
 
         }
@@ -92,7 +103,7 @@ namespace LovePets_UI
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SaveChanges();
-
+            log.Info("Exit from reminder window!");
 
             MainWindow window1 = new MainWindow();
             this.Visibility = Visibility.Hidden;

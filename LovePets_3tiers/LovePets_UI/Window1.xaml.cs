@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LovePets_BLL;
+using log4net;
 
 namespace LovePets_UI
 {
@@ -24,11 +25,16 @@ namespace LovePets_UI
         static int current_id = 0;
         List<Button> profiles;
 
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
 
         public Window1()
         {
             InitializeComponent();
-            
+            log4net.Config.XmlConfigurator.Configure();
+
+            log.Info("Entered to profile window!");
+
             El.MouseUp += ellipse_MouseUp;
 
             var bll = new LovePetsBLL();
@@ -77,6 +83,8 @@ namespace LovePets_UI
             age.Content = bll.GetAge(1);
             full_name.Text = bll.GetProfileFullName(1);
 
+            log.Info("Load profile info from DB");
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -85,8 +93,9 @@ namespace LovePets_UI
             var bll = new LovePetsBLL();
 
             bll.UpdateProfile(current_id+1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
+            log.Info("Update profiles in DB");
 
-
+            log.Info("Exit from profile window!");
 
             MainWindow mainwindow = new MainWindow();
             this.Visibility = Visibility.Hidden;
@@ -99,18 +108,31 @@ namespace LovePets_UI
 
         private void ellipse_MouseUp(object sender, RoutedEventArgs e)
         {
+            log.Info("Try load new image!");
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
                 BitmapImage lp = new BitmapImage();
-                lp.BeginInit();
-                lp.UriSource = new Uri(openFileDialog.FileName);
-                lp.EndInit();
+                try
+                {
+                    lp.BeginInit();
+                    lp.UriSource = new Uri(openFileDialog.FileName);
+                    lp.EndInit();
 
-                new LovePetsBLL().UpdatePhoto(current_id+1, openFileDialog.FileName);
+                    new LovePetsBLL().UpdatePhoto(current_id + 1, openFileDialog.FileName);
 
-                ImageBrush foteo = ((ImageBrush)El.FindName("Foteo"));
-                foteo.ImageSource = lp;
+                    ImageBrush foteo = ((ImageBrush)El.FindName("Foteo"));
+                    foteo.ImageSource = lp;
+
+                    log.Info("Image succesfully loaded!");
+                }
+                catch (Exception )
+                {
+                    log.Error("Error during image loading. Check the extension!");
+                }
+
+                
             }
 
         }
@@ -205,6 +227,11 @@ namespace LovePets_UI
             full_name.Text = bll.GetProfileFullName(current_id + 1);
 
             profiles[current_id].Background = Brushes.PaleVioletRed;
+
+
+
+            log.Info($"Switch to profile {current_id+1}");
+
         }
 
         private void date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -216,6 +243,7 @@ namespace LovePets_UI
         {
             var bll = new LovePetsBLL();
             bll.UpdateProfile(current_id+1, full_name.Text, profile_name.Text, breed.Text, color.Text, Convert.ToBoolean(sex.SelectedIndex), date.SelectedDate.HasValue ? date.SelectedDate.Value : DateTime.Now);
+            log.Info("Program closed!");
             System.Windows.Application.Current.Shutdown();
         }
     }
