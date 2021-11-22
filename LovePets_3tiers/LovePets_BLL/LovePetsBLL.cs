@@ -1,37 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using LovePets_DAL;
-using LovePets_EF;
-using LovePets_Shared;
-
-namespace LovePets_BLL
+﻿namespace LovePets_BLL
 {
+    using System;
+    using System.Collections.Generic;
+    using LovePets_DAL;
+    using LovePets_Shared;
+
     public class LovePetsBLL
     {
-
-
         public string GetTitle(int id)
         {
-
             ResultsDO res = new ResultsDO();
             return res.GetTitle(id);
-
         }
+
         public string GetParagraph1(int id)
         {
             ResultsDO res = new ResultsDO();
             return res.GetParagraph1(id);
         }
+
         public string GetParagraph2(int id)
         {
             ResultsDO res = new ResultsDO();
             return res.GetParagraph2(id);
         }
-
 
         public string GetPhoto1(int id)
         {
@@ -49,7 +41,6 @@ namespace LovePets_BLL
         {
             AnswersDO que = new AnswersDO();
             return que.GetCategoryPoints(id_question, answer_num);
-
         }
 
         public List<string> GetAnswers(int id)
@@ -63,19 +54,17 @@ namespace LovePets_BLL
             QuestionDO que = new QuestionDO();
             return que.GetQuestion(id);
         }
+
         public string GetQuestionPhoto(int id)
         {
             QuestionDO que = new QuestionDO();
             return que.GetQuestionPhoto(id);
-            
         }
 
         public void AddNewReminder(Reminder_st rem)
         {
-
             ReminderDO reminder = new ReminderDO();
             reminder.AddNewReminder(rem);
-
         }
 
         public List<Reminder_st> GetReminders()
@@ -83,13 +72,12 @@ namespace LovePets_BLL
             List<Reminder_st> reminders = new List<Reminder_st>();
 
             ReminderDO reminder = new ReminderDO();
-            
-            foreach(var i in reminder.GetIds())
+
+            foreach (int i in reminder.GetIds())
             {
                 reminders.Add(reminder.GetReminder(i));
-
             }
-            
+
             return reminders;
         }
 
@@ -99,13 +87,10 @@ namespace LovePets_BLL
             reminder.Delete();
         }
 
-
-
         public void UpdatePhoto(int id, string photo_link)
         {
             ProfileDO profile = new ProfileDO();
             profile.SaveAnimalPhoto(photo_link, id);
-
         }
 
         public string GetFoteo(int id)
@@ -120,7 +105,6 @@ namespace LovePets_BLL
             return profile.GetProfileCount();
         }
 
-
         public void AddDefaultProfile()
         {
             ProfileDO profile = new ProfileDO();
@@ -132,8 +116,6 @@ namespace LovePets_BLL
             ProfileDO profile = new ProfileDO();
             profile.UpdateProfileName(id, full_name, profile_name, breed, color, sex, birth_date);
         }
-
-
 
         public string GetProfileFullName(int id)
         {
@@ -147,13 +129,11 @@ namespace LovePets_BLL
             return profile.GetProfileName(id);
         }
 
-
         public string GetBreed(int id)
         {
             ProfileDO profile = new ProfileDO();
             return profile.GetBreed(id);
         }
-
 
         public string GetColoring(int id)
         {
@@ -167,14 +147,11 @@ namespace LovePets_BLL
             return profile.GetBirthdate(id);
         }
 
-
-
         public bool GetSex(int id)
         {
             ProfileDO profile = new ProfileDO();
             return profile.GetSex(id);
         }
-
 
         public int GetAge(int id)
         {
@@ -184,7 +161,7 @@ namespace LovePets_BLL
 
         public void UpdateResults(Dictionary<string, int> results, int current_question, int questionID)
         {
-            Dictionary<string, int> categ_dict = GetCategoryPoints(current_question, questionID);
+            Dictionary<string, int> categ_dict = this.GetCategoryPoints(current_question, questionID);
             results["dogs"] += categ_dict["dogs"];
             results["cats"] += categ_dict["cats"];
             results["rodents"] += categ_dict["rodents"];
@@ -192,22 +169,19 @@ namespace LovePets_BLL
             results["birds"] += categ_dict["birds"];
         }
 
-        public int ChosenAnimal( Dictionary<string, int> result)
+        public int ChosenAnimal(Dictionary<string, int> result)
         {
             int index;
-
             int masx = 0;
-            string max_res = "";
+            string max_res = string.Empty;
             foreach (KeyValuePair<string, int> keyValue in result)
             {
                 if (keyValue.Value > masx)
                 {
                     masx = keyValue.Value;
                     max_res = keyValue.Key;
-
                 }
             }
-
 
             if (max_res == "dogs")
             {

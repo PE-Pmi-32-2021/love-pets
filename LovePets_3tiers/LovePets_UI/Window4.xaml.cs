@@ -1,25 +1,14 @@
-﻿using Syncfusion.UI.Xaml.Scheduler;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using LovePets_BLL;
-using LovePets_Shared;
-using log4net;
-
-namespace LovePets_UI
+﻿namespace LovePets_UI
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Windows;
+    using System.Windows.Media;
+    using log4net;
+    using LovePets_BLL;
+    using LovePets_Shared;
+    using Syncfusion.UI.Xaml.Scheduler;
+
     /// <summary>
     /// Interaction logic for Window4.xaml
     /// </summary>
@@ -29,61 +18,61 @@ namespace LovePets_UI
 
         public Window4()
         {
-            var bll = new LovePetsBLL();
+            LovePetsBLL bll = new LovePetsBLL();
 
             log4net.Config.XmlConfigurator.Configure();
 
-            InitializeComponent();
+            this.InitializeComponent();
 
             log.Info("Entered to reminder window!");
 
             ScheduleAppointmentCollection appointmentCollection = new ScheduleAppointmentCollection();
 
-
             List<Reminder_st> rems = bll.GetReminders();
 
             for (int i = 0; i < rems.Count; i++)
             {
-                ScheduleAppointment rem = new ScheduleAppointment();
+                ScheduleAppointment rem = new ScheduleAppointment
+                {
+                    StartTime = rems[i].StartTime,
+                    EndTime = rems[i].EndTime,
+                    Subject = rems[i].Subject,
+                    Location = rems[i].Location,
+                    Notes = rems[i].Notes,
+                    RecurrenceRule = rems[i].RecurrenceRule,
+                    AppointmentBackground = new SolidColorBrush(Color.FromRgb((byte)rems[i].BackR, (byte)rems[i].BackG, (byte)rems[i].BackB)),
+                    Foreground = new SolidColorBrush(Color.FromRgb((byte)rems[i].FrontR, (byte)rems[i].FrontG, (byte)rems[i].FrontB))
+                };
 
-                rem.StartTime = rems[i].startTime;
-                rem.EndTime = rems[i].endTime;
-                rem.Subject = rems[i].subject;
-                rem.Location = rems[i].location;
-                rem.Notes = rems[i].notes;
-                rem.RecurrenceRule = rems[i].recurrenceRule;
-                rem.AppointmentBackground = new SolidColorBrush(Color.FromRgb((byte)rems[i].backR, (byte)rems[i].backG, (byte)rems[i].backB));
-                rem.Foreground = new SolidColorBrush(Color.FromRgb((byte)rems[i].frontR, (byte)rems[i].frontG, (byte)rems[i].frontB));
-
-                appointmentCollection.Add(rem); 
+                appointmentCollection.Add(rem);
             }
 
-            
             Schedule.ItemsSource = appointmentCollection;
             log.Info("Loaded appointments!");
-
         }
 
-         private void SaveChanges()
+        private void SaveChanges()
         {
             ScheduleAppointmentCollection appointmentCollection = (ScheduleAppointmentCollection)Schedule.ItemsSource;
-            var bll = new LovePetsBLL();
+            LovePetsBLL bll = new LovePetsBLL();
             bll.DeleteReminders();
-            foreach (var item in appointmentCollection)
+            foreach (ScheduleAppointment item in appointmentCollection)
             {
-                Reminder_st rem = new Reminder_st();
-                rem.startTime = item.StartTime;
-                rem.endTime = item.EndTime;
-                rem.subject = item.Subject;
-                rem.location = item.Location;
-                rem.notes = item.Notes;
-                rem.recurrenceRule = item.RecurrenceRule;
-                rem.backR = ((SolidColorBrush)item.AppointmentBackground).Color.R;
-                rem.backG = ((SolidColorBrush)item.AppointmentBackground).Color.G;
-                rem.backB = ((SolidColorBrush)item.AppointmentBackground).Color.B;
-                rem.frontR = ((SolidColorBrush)item.Foreground).Color.R;
-                rem.frontG = ((SolidColorBrush)item.Foreground).Color.G;
-                rem.frontB = ((SolidColorBrush)item.Foreground).Color.B;
+                Reminder_st rem = new Reminder_st
+                {
+                    StartTime = item.StartTime,
+                    EndTime = item.EndTime,
+                    Subject = item.Subject,
+                    Location = item.Location,
+                    Notes = item.Notes,
+                    RecurrenceRule = item.RecurrenceRule,
+                    BackR = ((SolidColorBrush)item.AppointmentBackground).Color.R,
+                    BackG = ((SolidColorBrush)item.AppointmentBackground).Color.G,
+                    BackB = ((SolidColorBrush)item.AppointmentBackground).Color.B,
+                    FrontR = ((SolidColorBrush)item.Foreground).Color.R,
+                    FrontG = ((SolidColorBrush)item.Foreground).Color.G,
+                    FrontB = ((SolidColorBrush)item.Foreground).Color.B
+                };
 
                 bll.AddNewReminder(rem);
             }
@@ -93,27 +82,19 @@ namespace LovePets_UI
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-
-            SaveChanges();
+            this.SaveChanges();
             log.Info("Program closed!");
             System.Windows.Application.Current.Shutdown();
-
         }
- 
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            SaveChanges();
+            this.SaveChanges();
             log.Info("Exit from reminder window!");
 
             MainWindow window1 = new MainWindow();
-            this.Visibility = Visibility.Hidden;
+           this.Visibility = Visibility.Hidden;
             window1.Show();
         }
-
-        
     }
-
-
-  
-
 }
